@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [{
+        "type": "Microsoft.Web/sites",
+        "apiVersion": "2018-02-01",
+        "name": "CaloryCalculator",
+        "location": "[resourceGroup().location]",
+        "tags": {
+            "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/APP_SERVICE_PLAN_NAME')]": "Resource",
+            "displayName": "CaloryCalculator"
+        },
+        "dependsOn": [
+            "Microsoft.Web/serverfarms/APP_SERVICE_PLAN_NAME"
+        ],
+        "properties": {
+            "name": "CaloryCalculator",
+            "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', 'APP_SERVICE_PLAN_NAME')]"
+        }
+    }],
+    "outputs": {}
+}
